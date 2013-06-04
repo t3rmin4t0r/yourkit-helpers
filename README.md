@@ -1,7 +1,9 @@
 Helpers for Yourkit Profiler
 ============================
 
-When you run yourkit with hive, you end up with a few hundred map-tasks and their individual outputs.
+When you run [yourkit](http://yourkit.com) with hadoop, you end up with a few hundred map-tasks and their individual outputs.
+
+If you're like me, you have no clue which one is the slow one from the 168 map-tasks you have distributed across 20 machines.
 
 This is a quick-n-dirty way to churn through them to find the candidate file you're looking for.
 
@@ -25,6 +27,8 @@ This is a quick-n-dirty way to churn through them to find the candidate file you
 	              org.apache.hadoop.hive.ql.exec.SMBMapJoinOperator.joinFinalLeftData() 348786 ms/1
 	
 By default, it prints out the most expensive call-tree in the code. 
+
+Apply liberally with xargs -n 1 for immediate results, instead of downloading them all for no good reason.
 
 This is probably the simplest thing you can do with the script, but if you wanted to dig deeper, the `ourkit/__init.py` has very little code and needs no docs (if you think otherwise, please fork and send a pull-request).
 
