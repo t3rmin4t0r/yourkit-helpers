@@ -27,3 +27,14 @@ This is a quick-n-dirty way to churn through them to find the candidate file you
 By default, it prints out the most expensive call-tree in the code. 
 
 This is probably the simplest thing you can do with the script, but if you wanted to dig deeper, the `ourkit/__init.py` has very little code and needs no docs (if you think otherwise, please fork and send a pull-request).
+
+Just for fun, I've written a python pstats compatible dumper, which can dump each thread out in pstats
+
+	import ourkit, sys, pstats
+	p = ourkit.CallProfile(sys.argv[1])
+	p.walk()
+	longest = max(p.threads, key=lambda c: c.time)
+	stats = pstats.Stats(ourkit.PStatsAdapter(longest))
+	stats.sort_stats('cumulative').print_stats(10)
+	
+
