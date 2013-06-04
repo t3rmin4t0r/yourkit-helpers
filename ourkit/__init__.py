@@ -73,9 +73,9 @@ class PStatsAdapter(object):
 
 		if(not (call.name in parents)):
 			_cc = call.count
-			_ct = call.time
+			_ct = call.time/1000.0
 		_nc = call.count
-		_tt = call.own_time
+		_tt = call.own_time/1000.0
 		old = (cc, nc, tt, ct)		
 		item = (_cc, _nc, _tt, _ct)
 		if(call.parent): 
